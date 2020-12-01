@@ -1,0 +1,53 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TetherToken
+    network: mainnet
+    source:
+      address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+      abi: TetherToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Issue
+        - Redeem
+        - Deprecate
+        - Params
+        - DestroyedBlackFunds
+        - AddedBlackList
+        - RemovedBlackList
+        - Approval
+        - Transfer
+        - Pause
+        - Unpause
+      abis:
+        - name: TetherToken
+          file: TetherToken/abis/TetherToken.json
+      eventHandlers:
+        - event: Issue(uint256)
+          handler: handleIssue
+        - event: Redeem(uint256)
+          handler: handleRedeem
+        - event: Deprecate(address)
+          handler: handleDeprecate
+        - event: Params(uint256,uint256)
+          handler: handleParams
+        - event: DestroyedBlackFunds(address,uint256)
+          handler: handleDestroyedBlackFunds
+        - event: AddedBlackList(address)
+          handler: handleAddedBlackList
+        - event: RemovedBlackList(address)
+          handler: handleRemovedBlackList
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Pause()
+          handler: handlePause
+        - event: Unpause()
+          handler: handleUnpause
+      file: TetherToken/TetherToken.wasm
