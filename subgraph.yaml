@@ -8,6 +8,7 @@ dataSources:
     source:
       address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
       abi: TetherToken
+      startBlock: 4634748
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

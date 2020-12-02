@@ -1,5 +1,11 @@
-type User @entity {
+type IssueTether @entity {
   id: ID!
   count: BigInt!
   amount: BigInt! # uint256
+}
+
+type RedeemTether @entity {
+  id: ID!
+  count: BigInt!
+  amount: BigInt!
 }

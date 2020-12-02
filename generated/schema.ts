@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class User extends Entity {
+export class IssueTether extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,66 @@ export class User extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save User entity without an ID");
+    assert(id !== null, "Cannot save IssueTether entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save User entity with non-string ID. " +
+      "Cannot save IssueTether entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("User", id.toString(), this);
+    store.set("IssueTether", id.toString(), this);
   }
 
-  static load(id: string): User | null {
-    return store.get("User", id) as User | null;
+  static load(id: string): IssueTether | null {
+    return store.get("IssueTether", id) as IssueTether | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+}
+
+export class RedeemTether extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save RedeemTether entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save RedeemTether entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("RedeemTether", id.toString(), this);
+  }
+
+  static load(id: string): RedeemTether | null {
+    return store.get("RedeemTether", id) as RedeemTether | null;
   }
 
   get id(): string {
