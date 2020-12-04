@@ -9,3 +9,19 @@ type RedeemTether @entity {
   count: BigInt!
   amount: BigInt!
 }
+
+type ApprovalTether @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes!
+  spender: Bytes!
+  value: BigInt!
+}
+
+type TransferTether @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt!
+}

@@ -13,70 +13,32 @@ import {
   Pause,
   Unpause
 } from "../generated/TetherToken/TetherToken"
-import { IssueTether } from "../generated/schema"
+import { IssueTether, RedeemTether, ApprovalTether, TransferTether } from "../generated/schema"
 
 export function handleIssue(event: Issue): void {
-  let entity = IssueTether.load(event.params.amount.toHex())
+  let issue = IssueTether.load(event.params.amount.toHex())
 
-  if (entity == null) {
-    entity = new IssueTether(event.params.amount.toHex())
-    entity.count = BigInt.fromI32(0)
+  if (issue == null) {
+    issue = new IssueTether(event.params.amount.toHex())
+    issue.count = BigInt.fromI32(0)
   }
 
-  entity.count = entity.count + BigInt.fromI32(1)
-  entity.amount = event.params.amount
-  entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.name(...)
-  // - contract.deprecated(...)
-  // - contract.totalSupply(...)
-  // - contract.upgradedAddress(...)
-  // - contract.balances(...)
-  // - contract.decimals(...)
-  // - contract.maximumFee(...)
-  // - contract._totalSupply(...)
-  // - contract.getBlackListStatus(...)
-  // - contract.allowed(...)
-  // - contract.paused(...)
-  // - contract.balanceOf(...)
-  // - contract.getOwner(...)
-  // - contract.owner(...)
-  // - contract.symbol(...)
-  // - contract.allowance(...)
-  // - contract.basisPointsRate(...)
-  // - contract.isBlackListed(...)
-  // - contract.MAX_UINT(...)
+  issue.count = issue.count + BigInt.fromI32(1)
+  issue.amount = event.params.amount
+  issue.save()
 }
 
-import { RedeemTether } from "../generated/schema"
-
 export function handleRedeem(event: Redeem): void {
-  let entity = RedeemTether.load(event.params.amount.toHex())
+  let redeem = RedeemTether.load(event.params.amount.toHex())
 
-  if (entity == null) {
-    entity = new RedeemTether(event.params.amount.toHex())
-    entity.count = BigInt.fromI32(0)
+  if (redeem == null) {
+    redeem = new RedeemTether(event.params.amount.toHex())
+    redeem.count = BigInt.fromI32(0)
   }
 
-  entity.count = entity.count + BigInt.fromI32(1)
-  entity.amount = event.params.amount
-  entity.save()
-
+  redeem.count = redeem.count + BigInt.fromI32(1)
+  redeem.amount = event.params.amount
+  redeem.save()
 }
 
 export function handleDeprecate(event: Deprecate): void {}
@@ -89,9 +51,35 @@ export function handleAddedBlackList(event: AddedBlackList): void {}
 
 export function handleRemovedBlackList(event: RemovedBlackList): void {}
 
-export function handleApproval(event: Approval): void {}
+export function handleApproval(event: Approval): void {
+  let approval = ApprovalTether.load(event.params.value.toHex())
 
-export function handleTransfer(event: Transfer): void {}
+  if (approval == null) {
+    approval = new ApprovalTether(event.params.value.toHex())
+    approval.count = BigInt.fromI32(0)
+  }
+
+  approval.count = approval.count + BigInt.fromI32(1)
+  approval.owner = event.params.owner
+  approval.spender = event.params.spender
+  approval.value = event.params.value
+  approval.save()
+}
+
+export function handleTransfer(event: Transfer): void {
+  let transfer = TransferTether.load(event.params.value.toHex())
+
+  if (transfer == null) {
+    transfer = new TransferTether(event.params.value.toHex())
+    transfer.count = BigInt.fromI32(0)
+  }
+
+  transfer.count = transfer.count + BigInt.fromI32(1)
+  transfer.from = event.params.from
+  transfer.to = event.params.to
+  transfer.value = event.params.value
+  transfer.save()
+}
 
 export function handlePause(event: Pause): void {}
 
