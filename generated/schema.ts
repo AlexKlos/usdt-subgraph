@@ -109,3 +109,296 @@ export class RedeemTether extends Entity {
     this.set("amount", Value.fromBigInt(value));
   }
 }
+
+export class ApprovalTether extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save ApprovalTether entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save ApprovalTether entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("ApprovalTether", id.toString(), this);
+  }
+
+  static load(id: string): ApprovalTether | null {
+    return store.get("ApprovalTether", id) as ApprovalTether | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+
+  get owner(): Bytes {
+    let value = this.get("owner");
+    return value.toBytes();
+  }
+
+  set owner(value: Bytes) {
+    this.set("owner", Value.fromBytes(value));
+  }
+
+  get spender(): Bytes {
+    let value = this.get("spender");
+    return value.toBytes();
+  }
+
+  set spender(value: Bytes) {
+    this.set("spender", Value.fromBytes(value));
+  }
+
+  get value(): BigInt {
+    let value = this.get("value");
+    return value.toBigInt();
+  }
+
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
+  }
+}
+
+export class TransferTether extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TransferTether entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TransferTether entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TransferTether", id.toString(), this);
+  }
+
+  static load(id: string): TransferTether | null {
+    return store.get("TransferTether", id) as TransferTether | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+
+  get from(): Bytes {
+    let value = this.get("from");
+    return value.toBytes();
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
+  get to(): Bytes {
+    let value = this.get("to");
+    return value.toBytes();
+  }
+
+  set to(value: Bytes) {
+    this.set("to", Value.fromBytes(value));
+  }
+
+  get value(): BigInt {
+    let value = this.get("value");
+    return value.toBigInt();
+  }
+
+  set value(value: BigInt) {
+    this.set("value", Value.fromBigInt(value));
+  }
+}
+
+export class _DestroyedBlackFunds extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(
+      id !== null,
+      "Cannot save _DestroyedBlackFunds entity without an ID"
+    );
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _DestroyedBlackFunds entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_DestroyedBlackFunds", id.toString(), this);
+  }
+
+  static load(id: string): _DestroyedBlackFunds | null {
+    return store.get("_DestroyedBlackFunds", id) as _DestroyedBlackFunds | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+
+  get _blackListedUser(): Bytes {
+    let value = this.get("_blackListedUser");
+    return value.toBytes();
+  }
+
+  set _blackListedUser(value: Bytes) {
+    this.set("_blackListedUser", Value.fromBytes(value));
+  }
+
+  get _balance(): BigInt {
+    let value = this.get("_balance");
+    return value.toBigInt();
+  }
+
+  set _balance(value: BigInt) {
+    this.set("_balance", Value.fromBigInt(value));
+  }
+}
+
+export class _AddedBlackList extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _AddedBlackList entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _AddedBlackList entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_AddedBlackList", id.toString(), this);
+  }
+
+  static load(id: string): _AddedBlackList | null {
+    return store.get("_AddedBlackList", id) as _AddedBlackList | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+
+  get _user(): Bytes {
+    let value = this.get("_user");
+    return value.toBytes();
+  }
+
+  set _user(value: Bytes) {
+    this.set("_user", Value.fromBytes(value));
+  }
+}
+
+export class _RemovedBlackList extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save _RemovedBlackList entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save _RemovedBlackList entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("_RemovedBlackList", id.toString(), this);
+  }
+
+  static load(id: string): _RemovedBlackList | null {
+    return store.get("_RemovedBlackList", id) as _RemovedBlackList | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+
+  get _user(): Bytes {
+    let value = this.get("_user");
+    return value.toBytes();
+  }
+
+  set _user(value: Bytes) {
+    this.set("_user", Value.fromBytes(value));
+  }
+}

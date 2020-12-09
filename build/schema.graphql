@@ -9,3 +9,38 @@ type RedeemTether @entity {
   count: BigInt!
   amount: BigInt!
 }
+
+type ApprovalTether @entity {
+  id: ID!
+  count: BigInt!
+  owner: Bytes!
+  spender: Bytes!
+  value: BigInt!
+}
+
+type TransferTether @entity {
+  id: ID!
+  count: BigInt!
+  from: Bytes!
+  to: Bytes!
+  value: BigInt!
+}
+
+type _DestroyedBlackFunds @entity {
+  id: ID!
+  count: BigInt!
+  _blackListedUser: Bytes!
+  _balance: BigInt!
+}
+
+type _AddedBlackList @entity {
+  id: ID!
+  count: BigInt!
+  _user: Bytes!
+}
+
+type _RemovedBlackList @entity {
+  id: ID!
+  count: BigInt!
+  _user: Bytes!
+}

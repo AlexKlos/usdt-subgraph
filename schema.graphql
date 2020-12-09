@@ -1,7 +1,7 @@
 type IssueTether @entity {
   id: ID!
   count: BigInt!
-  amount: BigInt! # uint256
+  amount: BigInt!
 }
 
 type RedeemTether @entity {
@@ -24,4 +24,23 @@ type TransferTether @entity {
   from: Bytes!
   to: Bytes!
   value: BigInt!
+}
+
+type _DestroyedBlackFunds @entity {
+  id: ID!
+  count: BigInt!
+  _blackListedUser: Bytes!
+  _balance: BigInt!
+}
+
+type _AddedBlackList @entity {
+  id: ID!
+  count: BigInt!
+  _user: Bytes!
+}
+
+type _RemovedBlackList @entity {
+  id: ID!
+  count: BigInt!
+  _user: Bytes!
 }
